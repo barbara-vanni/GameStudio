@@ -1,4 +1,5 @@
 import pygame
+import sys
 pygame.init()
 
 # Definition ecran
@@ -10,7 +11,7 @@ screen = pygame.display.set_mode(size)
 # Sortie et fin de jeu
 while True :
     for event in pygame.event.get():
-        if event.type == QUIT:
+        if event.type == quit:
             pygame.quit()
             sys.exit()
     pygame.display.update()
