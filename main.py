@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import pygame
 from pygame.locals import QUIT
 
@@ -13,3 +14,5 @@ while True :
             pygame.quit()
             sys.exit()
     pygame.display.update()
+=======
+>>>>>>> Stashed changes
