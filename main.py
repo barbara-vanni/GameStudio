@@ -2,7 +2,7 @@ import pygame
 from pygame.locals import QUIT
 
 pygame.init()
-screen = pygame.display.set_mode((800, 800))
+screen = pygame.display.set_mode((800, 600))
 pygame.display.set_caption('Basic Pygame program')
 
 
