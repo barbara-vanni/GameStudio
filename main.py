@@ -1,7 +1,17 @@
 import pygame
 pygame.init()
-size = 800,800
+
+# Definition ecran
+size = 800,600
 screen = pygame.display.set_mode(size)
 
-while True:
-    size=size
+
+
+# Sortie et fin de jeu
+while True :
+    for event in pygame.event.get():
+        if event.type == QUIT:
+            pygame.quit()
+            sys.exit()
+    pygame.display.update()
+
