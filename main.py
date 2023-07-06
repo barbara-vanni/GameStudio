@@ -1,6 +1,6 @@
 import pygame
 import sys
-from pygame.locals import QUIT
+
 
 
 # Definition ecran (constante)
@@ -47,7 +47,7 @@ colortable = [
     (76,0,230)
 ]
 
-map = ( 
+map = (
     '11111111111111111111'
     '10000000000003330001'
     '10011100000000000001'
@@ -77,7 +77,7 @@ pygame.init()
 # Sortie et fin de jeu
 while True :
     for event in pygame.event.get():
-        if event.type == QUIT:
+        if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
 
