@@ -47,7 +47,7 @@ pygame.init()
 # Sortie et fin de jeu
 while True :
     for event in pygame.event.get():
-        if event.type == pygame.QUIT or pygame.K_ESCAPE:
+        if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
             pygame.quit()
             sys.exit()
     
