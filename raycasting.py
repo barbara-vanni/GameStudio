@@ -6,4 +6,4 @@ def raycasting():
     
     for ray in range():
 
-    p = player_pos #px et py point du depart du rayon
+    vector_initial = pg.Vector2(player_pos.x,player_pos.y) #px et py point du depart du rayon
