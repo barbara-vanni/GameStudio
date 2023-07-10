@@ -54,7 +54,7 @@ class Player :
         # self.position.x -= self.speed * self.vector_dir.x * frame_time
         # self.position.y -= self.speed * self.vector_dir.y * frame_time
     
-    #Pour move left et right on calcule le vector dir +- 90° donc ça perpendiculaire
+    #Pour move left et right on calcule le vector dir +- 90° donc ça perpendiculaire positive et négative
     def move_left(self, frame_time, map):    
         perpendicular_dir = pg.Vector2(-self.vector_dir.y, self.vector_dir.x)
         new_position = self.position + perpendicular_dir * self.speed * frame_time
