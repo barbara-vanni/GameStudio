@@ -45,14 +45,10 @@ class Player :
     def move_forward (self, frame_time, map) :
         new_position = self.position + self.speed * self.vector_dir * frame_time
         self.verify_wall (new_position, map)
-        # self.position.x += self.speed * self.vector_dir.x * frame_time
-        # self.position.y += self.speed * self.vector_dir.y * frame_time
 
     def move_back (self, frame_time, map) :
         new_position = self.position - self.speed * self.vector_dir * frame_time
         self.verify_wall (new_position, map)
-        # self.position.x -= self.speed * self.vector_dir.x * frame_time
-        # self.position.y -= self.speed * self.vector_dir.y * frame_time
     
     #Pour move left et right on calcule le vector dir +- 90° donc ça perpendiculaire positive et négative
     def move_left(self, frame_time, map):    
