@@ -12,7 +12,7 @@ class Player :
         self.vector_dir = self.update_dir ()
         
 
-    def movement (self, frame_time, map) :
+    def movement (self, frame_time, map) :   #CONFIG POUR WASD, pour azerty : 
         KEYS = pg.key.get_pressed()
         mouse = pg.mouse.get_rel()
         rotation = (self.rotation * frame_time)
@@ -20,12 +20,12 @@ class Player :
             self.rotate_left (rotation)
         if KEYS[pg.K_RIGHT] or mouse[0] > 0:
             self.rotate_right (rotation)
-        if KEYS[ord('a')]:
+        if KEYS[ord('a')]:                      #a par q
             self.move_left(frame_time,map)
-        if KEYS[ord('d')]:
+        if KEYS[ord('d')]: 
             self.move_right(frame_time,map)
             
-        if KEYS[pg.K_UP] or KEYS[ord('w')] :
+        if KEYS[pg.K_UP] or KEYS[ord('w')] :   #w par z
             self.move_forward (frame_time, map)
         if KEYS[pg.K_DOWN] or KEYS[ord('s')] :
             self.move_back (frame_time, map) 
