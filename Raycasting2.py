@@ -3,6 +3,10 @@ import numpy as np
 from settings import *
 from player import *
 
+# def correct_fisheye(dist, cos_a):
+#     corrected_distance = dist / cos_a
+#     return corrected_distance
+
 def raycasting(window, map, player): 
     angle_init = player.angle - HALF_FOV
     start_x = 0
@@ -15,7 +19,6 @@ def raycasting(window, map, player):
         vector_dir = (pg.math.Vector2(sin_a*RAY_SPEED, cos_a*RAY_SPEED))
         hit = False
         dist = 0 
-        # print(vector_init)
         while not hit: 
             vector_init += vector_dir # rayon lancé
             if map[int(vector_init.y)][int(vector_init.x)] == 1:
@@ -27,6 +30,8 @@ def raycasting(window, map, player):
         start_x += SCALE
         pg.draw.rect(window, (200,200,200), (start_x, start_y, SCALE, projected_height))
         angle_init += DELTA_ANGLE
+
+
 
     
     
