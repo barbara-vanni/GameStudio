@@ -1,7 +1,7 @@
 import pygame
 import sys
 from player import *
-from raycasting2 import *
+from raycasting import *
 
 
 # Definition ecran (constante)

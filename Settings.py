@@ -10,8 +10,6 @@ ECHELLE = 100
 
 # player settings
 PLAYER_POS_INIT = pg.math.Vector2(8,11) # position initiale
-player_pos = PLAYER_POS_INIT
-player_angle = 0.0
 RAY_SPEED = 0.04  #
 PLAYER_SPEED = 0.02
 
