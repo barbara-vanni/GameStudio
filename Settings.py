@@ -2,17 +2,19 @@ import numpy as np
 import pygame as pg
 
 #Settings
-RES_X = 1920
-RES_Y = 1080
+RES_X = 800
+RES_Y = 600
 HALF_WIDTH = RES_X // 2
 HALF_HEIGHT = RES_Y // 2
 ECHELLE = 100 
 
 # player settings
-PLAYER_POS_INIT = pg.math.Vector2(18,5) # position initial
+PLAYER_POS_INIT = pg.math.Vector2(8,11) # position initial
 player_pos = PLAYER_POS_INIT
-player_angle = 0
-velocity = 4
+player_angle = 0.0
+RAY_SPEED = 0.04  #
+PLAYER_SPEED = 0.02
+
 
 # ray casting settings
 FOV = np.pi / 3  # Approx 60 Degrees

@@ -1,6 +1,6 @@
 import pygame as pg
 import numpy as np
-from Settings import *
+from settings import *
 
 def raycasting(window, map): 
     angle_init = player_angle - HALF_FOV
@@ -12,18 +12,17 @@ def raycasting(window, map):
         cos_a = np.cos(angle_init)
         sin_a = sin_a if sin_a else 0.000001
         cos_a = cos_a if cos_a else 0.000001
-        vector_dir = (pg.math.Vector2(sin_a*velocity/ECHELLE, cos_a*velocity/ECHELLE))
+        vector_dir = (pg.math.Vector2(sin_a*RAY_SPEED, cos_a*RAY_SPEED))
         hit = False
         dist = 0 
         while not hit: 
             vector_init += vector_dir # rayon lancé
             if map[int(vector_init.y)][int(vector_init.x)] == 1:
                 hit = True
-            dist += velocity #rayon à touché = distance parcourue
+            dist += RAY_SPEED * 100 #rayon à touché = distance parcourue
         projected_height = int(WALL_HEIGHT / dist)
         half_projected_height = projected_height // 2
         start_y = HALF_HEIGHT - half_projected_height
-        print(start_y)
         start_x += SCALE
         pg.draw.rect(window, (200,200,200), (start_x, start_y, SCALE, projected_height))
 

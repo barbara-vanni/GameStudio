@@ -1,6 +1,6 @@
 import pygame as pg
 import numpy as np
-from Settings import * 
+from settings import * 
 
 
 
