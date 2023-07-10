@@ -16,20 +16,21 @@ class Player :
         KEYS = pg.key.get_pressed()
         mouse = pg.mouse.get_rel()
         rotation = (self.rotation * frame_time)
-        if KEYS[pg.K_LEFT] or mouse[0] < 0 : 
-            self.rotate_left (rotation)
-        if KEYS[pg.K_RIGHT] or mouse[0] > 0:
-            self.rotate_right (rotation)
-        if KEYS[ord('a')]:                      #a par q
-            self.move_left(frame_time,map)
-        if KEYS[ord('d')]: 
-            self.move_right(frame_time,map)
-            
+
         if KEYS[pg.K_UP] or KEYS[ord('w')] :   #w par z
             self.move_forward (frame_time, map)
         if KEYS[pg.K_DOWN] or KEYS[ord('s')] :
             self.move_back (frame_time, map) 
-     
+        if KEYS[ord('a')]:                      #a par q
+            self.move_left(frame_time,map)
+        if KEYS[ord('d')]: 
+            self.move_right(frame_time,map)
+        
+        if KEYS[pg.K_LEFT] or mouse[0] < 0 : 
+            self.rotate_left (rotation)
+        if KEYS[pg.K_RIGHT] or mouse[0] > 0:
+            self.rotate_right (rotation)
+
     def update_dir (self) :
         sin_a = np.sin(self.angle)      
         cos_a = np.cos(self.angle)
