@@ -30,3 +30,17 @@ SCALE = RES_X // NUM_RAYS  # must result in a whole integer number otherwise ren
 TEXTURE_WIDTH = 1000
 TEXTURE_HEIGHT = 1000
 TEXTURE_SCALE = TEXTURE_WIDTH // ECHELLE
+
+# COLORS
+
+CYAN = (0, 255, 255)
+TEAL = (0, 128, 128)
+YELLOW = (255, 255, 0)
+WHITE = (255, 255, 255)
+
+colors = [
+    WHITE,
+    CYAN,
+    TEAL,
+    YELLOW
+]
