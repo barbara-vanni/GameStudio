@@ -42,3 +42,7 @@ colors = [
     TEAL,
     YELLOW
 ]
+
+# njit optimisation
+size = 5
+maph = np.random.choice([0, 0, 0, 1], (size, size))
