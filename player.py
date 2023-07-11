@@ -10,6 +10,7 @@ class Player :
         self.speed = 0.002
         self.rotation = 0.002
         self.vector_dir = self.update_dir ()
+        self.perpendicular_dir = self.update_perpendicular_dir()
         
 
     def movement (self, frame_time, map) :   #CONFIG POUR WASD, pour azerty : 
@@ -36,7 +37,14 @@ class Player :
         cos_a = np.cos(self.angle)
         sin_a = sin_a if sin_a else 0.000001
         cos_a = cos_a if cos_a else 0.000001
-        return (pg.Vector2(sin_a, cos_a))
+        return pg.Vector2(sin_a, cos_a)
+    
+    def update_perpendicular_dir(self):
+        sin_a = np.sin(self.angle)      
+        cos_a = np.cos(self.angle)
+        sin_a = sin_a if sin_a else 0.000001
+        cos_a = cos_a if cos_a else 0.000001
+        return pg.Vector2(- cos_a, sin_a)
     
     def verify_wall (self, new_position, map) :
         if map[int(new_position.y)][int(new_position.x)] == 0:
@@ -52,13 +60,13 @@ class Player :
     
     #Pour move left et right on calcule le vector dir +- 90° donc ça perpendiculaire positive et négative
     def move_left(self, frame_time, map):    
-        perpendicular_dir = pg.Vector2(-self.vector_dir.y, self.vector_dir.x)
-        new_position = self.position + perpendicular_dir * self.speed * frame_time
+        # perpendicular_dir = pg.Vector2(-self.vector_dir.y, self.vector_dir.x)
+        new_position = self.position + self.perpendicular_dir * self.speed * frame_time
         self.verify_wall(new_position, map)
 
     def move_right(self, frame_time, map):
-        perpendicular_dir = pg.Vector2(self.vector_dir.y, -self.vector_dir.x)
-        new_position = self.position + perpendicular_dir * self.speed * frame_time
+        # perpendicular_dir = pg.Vector2(self.vector_dir.y, -self.vector_dir.x)
+        new_position = self.position - self.perpendicular_dir * self.speed * frame_time
         self.verify_wall(new_position, map)
 
     def rotate_left (self, rotation) :
@@ -71,8 +79,10 @@ class Player :
     @property
     def angle(self):
         return self._angle
-    
     @angle.setter
     def angle(self,value):
         self._angle = value
         self.vector_dir = self.update_dir ()
+        self.perpendicular_dir = self.update_perpendicular_dir()
+    
+    
