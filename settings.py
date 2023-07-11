@@ -17,7 +17,7 @@ PLAYER_SPEED = 0.01
 # ray casting settings
 FOV = np.pi / 3  # Approx 60 Degrees
 HALF_FOV = FOV / 2
-NUM_RAYS = 800
+NUM_RAYS = 400
 MAX_DEPTH = 2000
 DELTA_ANGLE = FOV / NUM_RAYS
 DIST = NUM_RAYS / (2 * np.tan(HALF_FOV))
