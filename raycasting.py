@@ -14,7 +14,8 @@ def raycasting(window, map, player):
         cos_a = cos_a if cos_a else 0.000001
         vector_dir = (pg.math.Vector2(sin_a*RAY_SPEED, cos_a*RAY_SPEED))
         hit = False
-        dist = 0
+        dist = 0 
+        # print(vector_init)
         while not hit: 
             vector_init += vector_dir # rayon lancé
             if map[int(vector_init.y)][int(vector_init.x)] == 1:
@@ -26,3 +27,6 @@ def raycasting(window, map, player):
         start_x += SCALE
         pg.draw.rect(window, (200,200,200), (start_x, start_y, SCALE, projected_height))
         angle_init += DELTA_ANGLE
+
+    
+    
