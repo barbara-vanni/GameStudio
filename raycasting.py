@@ -21,8 +21,7 @@ def raycasting(window, map, player):
             if map[int(vector_init.y)][int(vector_init.x)] == 1:
                 hit = True
             dist += RAY_SPEED #rayon à touché = distance parcourue
-        corrected_dist = dist * np.cos(angle_init - player.angle)  # Apply fish-eye correction
-        projected_height = int(RES_Y / corrected_dist)
+        projected_height = int(RES_Y / dist)
         half_projected_height = projected_height // 2
         start_y = HALF_HEIGHT - half_projected_height
         start_x += SCALE

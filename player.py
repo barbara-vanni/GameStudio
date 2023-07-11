@@ -8,7 +8,7 @@ class Player :
         self.position = pg.Vector2(x, y)
         self._angle = 0
         self.speed = 0.002
-        self.rotation = 0.002
+        self.rotation = 0.003
         self.update_cos_sin()
         self.vector_dir = self.update_dir ()
         self.perpendicular_dir = self.update_perpendicular_dir()
