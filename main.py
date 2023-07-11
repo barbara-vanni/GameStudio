@@ -91,7 +91,6 @@ else :
             params.pop(0)
             new_table.append(Cell(type, params))
         map.append(new_table)
-print (map)
 
 while 1 :
     for event in pg.event.get():
