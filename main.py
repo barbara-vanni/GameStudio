@@ -1,7 +1,7 @@
 import pygame as pg
 import sys
 from player import *
-from raycasting2 import *
+from raycasting import *
 
 
 size = RES_X, RES_Y
@@ -57,6 +57,8 @@ map =  [
 
 # initialisation
 pg.init()
+pg.mouse.set_visible(False)
+pg.event.set_grab(True)    #Pour que la souris ne sorte pas de l'écran
 
 
 # Sortie et fin de jeu
@@ -64,7 +66,7 @@ clock = pg.time.Clock()
 
 player = Player(8,11)
 
-pg.mouse.set_visible(False)
+
 
 while True :
     for event in pg.event.get():
