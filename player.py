@@ -8,6 +8,7 @@ class Player :
         self.position = pg.Vector2(x, y)
         self._angle = 0
         self.speed = 0.002
+        self.collision_radius = 0.2
         self.rotation = 0.003
         self.update_cos_sin()
         self.vector_dir = self.update_dir ()
@@ -51,6 +52,7 @@ class Player :
 
     def move_forward (self, frame_time, map) :
         new_position = self.position + self.speed * self.vector_dir * frame_time
+        # if map[int(new_position.y + self.collision_radius + self.vector_dir.y * self.speed)][int(new_position.x + self.collision_radius)].type == 0 and map[int(self.position.y - self.collision_radius + self.vector_dir.y * self.speed)][int(self.position.x - self.collision_radius)].type == 0:
         self.verify_wall (new_position, map)
 
     def move_back (self, frame_time, map) :
