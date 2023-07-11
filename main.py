@@ -86,9 +86,9 @@ else :
             params = cells.split(":")
             type = int(params[0])
             params.pop(0)
-            new_table.append(Cell(type, params))
+            new_table.append(Cell.create(type)(params))
         map.append(new_table)
-print (map)
+
 
 while True :
     for event in pg.event.get():
