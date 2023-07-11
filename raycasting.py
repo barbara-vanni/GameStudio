@@ -14,7 +14,8 @@ def raycasting(window, map, player):
         cos_a = cos_a if cos_a else 0.000001
         vector_dir = (pg.math.Vector2(sin_a*RAY_SPEED, cos_a*RAY_SPEED))
         hit = False
-        dist = 0 
+        dist = 0
+
         # print(vector_init)
         while not hit: 
             vector_init += vector_dir # rayon lancé
@@ -22,8 +23,8 @@ def raycasting(window, map, player):
             if cell.type != 0:
                 hit = True
             dist += RAY_SPEED #rayon à touché = distance parcourue
-        
-        projected_height = int(RES_Y / (dist * np.cos(player.angle - angle_init )))#calcul de la hauteur du mur
+        #projected_height = int(RES_Y / dist)#calcul de la hauteur du mur
+        projected_height = int(RES_Y / (dist * np.cos(player.angle - angle_init + 0.000001 )))#calcul de la hauteur du mur
         half_projected_height = projected_height // 2
         start_y = HALF_HEIGHT - half_projected_height
         start_x += SCALE
