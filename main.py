@@ -68,7 +68,7 @@ clock = pygame.time.Clock()
 
 player = Player(8,11)
 
-pg.mouse.set_visible(False)
+
 
 while True :
     for event in pygame.event.get():

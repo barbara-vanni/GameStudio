@@ -15,6 +15,7 @@ class Player :
     def movement (self, frame_time, map) :   #CONFIG POUR WASD, pour azerty : 
         KEYS = pg.key.get_pressed()
         mouse = pg.mouse.get_rel()
+        pg.mouse.set_visible(False)
         pg.event.set_grab(True)    #Pour que la souris ne sorte pas de l'écran
         rotation = (self.rotation * frame_time)
 
