@@ -46,7 +46,7 @@ class Player :
         return pg.Vector2(- self.cos_a, self.sin_a)
     
     def verify_wall (self, new_position, map) :
-        if map[int(new_position.y)][int(new_position.x)] == 0:
+        if map[int(new_position.y)][int(new_position.x)].type == 0:
             self.position = new_position
 
     def move_forward (self, frame_time, map) :

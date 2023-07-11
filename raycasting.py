@@ -18,14 +18,15 @@ def raycasting(window, map, player):
         # print(vector_init)
         while not hit: 
             vector_init += vector_dir # rayon lancé
-            if map[int(vector_init.y)][int(vector_init.x)] == 1:
+            cell = map[int(vector_init.y)][int(vector_init.x)]
+            if cell.type != 0:
                 hit = True
             dist += RAY_SPEED #rayon à touché = distance parcourue
         projected_height = int(RES_Y / dist)
         half_projected_height = projected_height // 2
         start_y = HALF_HEIGHT - half_projected_height
         start_x += SCALE
-        pg.draw.rect(window, (200,200,200), (start_x, start_y, SCALE, projected_height))
+        pg.draw.rect(window, cell.color, (start_x, start_y, SCALE, projected_height))
         angle_init += DELTA_ANGLE
 
     
