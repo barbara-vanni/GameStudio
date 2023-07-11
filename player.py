@@ -17,11 +17,11 @@ class Player :
         mouse = pg.mouse.get_rel()
         rotation = (self.rotation * frame_time)
 
-        if KEYS[pg.K_UP] or KEYS[ord('w')] :   #w par z
+        if KEYS[pg.K_UP] or KEYS[ord('z')] :   #w par z
             self.move_forward (frame_time, map)
         if KEYS[pg.K_DOWN] or KEYS[ord('s')] :
             self.move_back (frame_time, map) 
-        if KEYS[ord('a')]:                      #a par q
+        if KEYS[ord('q')]:                      #a par q
             self.move_left(frame_time,map)
         if KEYS[ord('d')]: 
             self.move_right(frame_time,map)
