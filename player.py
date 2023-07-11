@@ -9,6 +9,7 @@ class Player :
         self._angle = 0
         self.speed = 0.002
         self.rotation = 0.002
+        self.update_cos_sin()
         self.vector_dir = self.update_dir ()
         self.perpendicular_dir = self.update_perpendicular_dir()
         
@@ -31,20 +32,18 @@ class Player :
             self.rotate_left (rotation)
         if KEYS[pg.K_RIGHT] or mouse[0] > 0:
             self.rotate_right (rotation)
+    
+    def update_cos_sin(self):
+        self.sin_a = np.sin(self.angle)      
+        self.cos_a = np.cos(self.angle)
+        self.sin_a = self.sin_a if self.sin_a else 0.000001
+        self.cos_a = self.cos_a if self.cos_a else 0.000001
 
     def update_dir (self) :
-        sin_a = np.sin(self.angle)      
-        cos_a = np.cos(self.angle)
-        sin_a = sin_a if sin_a else 0.000001
-        cos_a = cos_a if cos_a else 0.000001
-        return pg.Vector2(sin_a, cos_a)
+        return pg.Vector2(self.sin_a, self.cos_a)
     
     def update_perpendicular_dir(self):
-        sin_a = np.sin(self.angle)      
-        cos_a = np.cos(self.angle)
-        sin_a = sin_a if sin_a else 0.000001
-        cos_a = cos_a if cos_a else 0.000001
-        return pg.Vector2(- cos_a, sin_a)
+        return pg.Vector2(- self.cos_a, self.sin_a)
     
     def verify_wall (self, new_position, map) :
         if map[int(new_position.y)][int(new_position.x)] == 0:
@@ -82,6 +81,7 @@ class Player :
     @angle.setter
     def angle(self,value):
         self._angle = value
+        self.update_cos_sin()
         self.vector_dir = self.update_dir ()
         self.perpendicular_dir = self.update_perpendicular_dir()
     
