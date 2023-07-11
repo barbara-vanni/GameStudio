@@ -3,6 +3,7 @@ import sys
 from player import *
 from raycasting import *
 from cell import *
+from numba import njit
 
 
 size = RES_X, RES_Y
@@ -92,7 +93,7 @@ else :
         map.append(new_table)
 print (map)
 
-while True :
+while 1 :
     for event in pg.event.get():
         if event.type == pg.QUIT or (event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE):
             pg.quit()
@@ -107,3 +108,28 @@ while True :
     # pg.display.update()
     pg.display.set_caption("GAME STUDIO FPS : " + str(int(clock.get_fps())))
 
+@njit()
+def new_frame(posx, posy, rot, frame, hres, floor, sky, halfvres, mod, maph, size):
+    for i in range(hres):
+        rot_i = rot + np.deg2rad(i/mod - 30)
+        sin, cos, cos2 = np.sin(rot_i), np.cos(rot_i), np.cos(np.deg2rad(i/mod - 30))
+        frame[i][:] = sky[int(np.rad2deg(rot_i)%359)][:]/255
+        for j in range(halfvres):
+            n = (halfvres/(halfvres-j))/cos2
+            x, y = posx + cos*n, posy + sin*n
+            scaler = 30/5
+            xx, yy = int(x/scaler%1*100), int (y/scaler%1*100)
+
+            shade = 0.2 + 0.8*(1-j/halfvres)
+
+            if maph[int(x)%(size-1)][int(y)%(size-1)]:
+                h = halfvres - j
+                c = shade*np.ones(3)
+                for k in range(h*2):
+                    frame[i][halfvres - h +k] = c
+                break
+            
+            else:
+                frame[i][halfvres*2-j-1] = shade*floor[xx][yy]/255
+
+    return frame
