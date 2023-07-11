@@ -61,6 +61,8 @@ map =  [
 
 # initialisation
 pygame.init()
+pg.mouse.set_visible(False)
+pg.event.set_grab(True)    #Pour que la souris ne sorte pas de l'écran
 
 
 # Sortie et fin de jeu
