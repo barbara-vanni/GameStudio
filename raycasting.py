@@ -5,6 +5,7 @@ from player import *
 from cell import *
 
 def raycasting(window, map, player): 
+    # window.blit(GOBELIN, (8,13))
     angle_init = player.angle - HALF_FOV
     start_x = 0
     for ray in range(NUM_RAYS):
@@ -14,25 +15,40 @@ def raycasting(window, map, player):
         sin_a = sin_a if sin_a else 0.000001
         cos_a = cos_a if cos_a else 0.000001
         vector_dir = (pg.math.Vector2(sin_a*RAY_SPEED, cos_a*RAY_SPEED))
+
         hit = False
         dist = 0
+        gobelin = False
+        # projected_depth = int()
+        depth = HALF_HEIGHT/((HALF_HEIGHT+0.1-np.linspace(0, HALF_HEIGHT, HALF_HEIGHT)))
+        cos22 = np.cos(np.deg2rad(np.linspace(-30,30, RES_X)/SCALE)) # perspective correction
 
-        # print(vector_init)
+        while not gobelin:
+            vector_init += vector_dir # rayon lancé
+            cell = map[int(vector_init.y)][int(vector_init.x)]
+            print(cell.type == Cell_type.FLOOR)
+            if cell.type == Cell_type.FLOOR:
+                gobelin = True
+            dist += RAY_SPEED #rayon à touché = distance parcourue
+
+        floor = pg.surfarray.array3d(pg.image.load('floor.jpg'))/255
+        
         while not hit: 
             vector_init += vector_dir # rayon lancé
             cell = map[int(vector_init.y)][int(vector_init.x)]
-            if cell.type == Cell_type.FLOOR:
-                pass
-            elif cell.type == Cell_type.WALL:
+            if cell.type == Cell_type.WALL:
                 hit = True
             dist += RAY_SPEED #rayon à touché = distance parcourue
-        #projected_height = int(RES_Y / dist)#calcul de la hauteur du mur
+
         projected_height = int(RES_Y / (dist * np.cos(player.angle - angle_init + 0.000001)) )#calcul de la hauteur du mur
         half_projected_height = projected_height // 2
         start_y = HALF_HEIGHT - half_projected_height
         start_x += SCALE
         pg.draw.rect(window, cell.color, (start_x, start_y, SCALE, projected_height))
         angle_init += DELTA_ANGLE
+
+
+
 
     
     
