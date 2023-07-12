@@ -24,7 +24,7 @@ def raycasting(window, map, player):
                 hit = True
             dist += RAY_SPEED #rayon à touché = distance parcourue
         #projected_height = int(RES_Y / dist)#calcul de la hauteur du mur
-        projected_height = int(RES_Y / (dist * np.cos(player.angle - angle_init + 0.000001 )))#calcul de la hauteur du mur
+        projected_height = int(RES_Y / (dist * np.cos(player.angle - angle_init + 0.000001)) )#calcul de la hauteur du mur
         half_projected_height = projected_height // 2
         start_y = HALF_HEIGHT - half_projected_height
         start_x += SCALE
