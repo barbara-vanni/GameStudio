@@ -2,6 +2,7 @@ import pygame as pg
 import numpy as np
 from settings import *
 from player import *
+from cell import *
 
 def raycasting(window, map, player): 
     angle_init = player.angle - HALF_FOV
@@ -18,7 +19,7 @@ def raycasting(window, map, player):
         while not hit: 
             vector_init += vector_dir # rayon lancé
             cell = map[int(vector_init.y)][int(vector_init.x)]
-            if cell.type != 0:
+            if cell.type == Cell_type.WALL:
                 hit = True
             dist += RAY_SPEED #rayon à touché = distance parcourue
         projected_height = int(RES_Y / dist)

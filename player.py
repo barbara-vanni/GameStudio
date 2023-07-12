@@ -1,7 +1,7 @@
 import pygame as pg
 import numpy as np
 from settings import *
-
+from cell import *
 
 class Player : 
     def __init__(self, x, y) :
@@ -33,7 +33,7 @@ class Player :
         return (pg.math.Vector2(sin_a, cos_a))
     
     def verify_wall (self, new_position, map) :
-        if map[int(new_position.y)][int(new_position.x)].type == 0:
+        if map[int(new_position.y)][int(new_position.x)].type == Cell_type.FLOOR:
             self.position = new_position
 
     def move_forward (self, frame_time, map) :
