@@ -5,6 +5,7 @@ from raycasting import *
 from cell import *
 
 
+
 size = RES_X, RES_Y
 MAP_SIZE = 20
 TILE_SIZE = int((RES_X / 2) / MAP_SIZE)
@@ -58,6 +59,8 @@ map = []
 
 # initialisation
 pg.init()
+pg.mouse.set_visible(False)
+pg.event.set_grab(True)    #Pour que la souris ne sorte pas de l'écran
 
 
 # Sortie et fin de jeu
@@ -65,7 +68,7 @@ clock = pg.time.Clock()
 
 player = Player(8,11)
 
-pg.mouse.set_visible(False)
+
 
 args = sys.argv
 if len(args) < 2 :
@@ -89,8 +92,7 @@ else :
             new_table.append(Cell.create(type)(params))
         map.append(new_table)
 
-
-while True :
+while 1 :
     for event in pg.event.get():
         if event.type == pg.QUIT or (event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE):
             pg.quit()
