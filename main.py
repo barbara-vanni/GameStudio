@@ -64,6 +64,7 @@ pg.init()
 clock = pg.time.Clock()
 
 player = Player(8,11)
+# floor = Floor()
 
 pg.mouse.set_visible(False)
 

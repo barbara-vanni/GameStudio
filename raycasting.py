@@ -19,9 +19,13 @@ def raycasting(window, map, player):
         while not hit: 
             vector_init += vector_dir # rayon lancé
             cell = map[int(vector_init.y)][int(vector_init.x)]
-            if cell.type == Cell_type.WALL:
+            if cell.type == Cell_type.FLOOR:
+                pass
+            elif cell.type == Cell_type.WALL:
                 hit = True
             dist += RAY_SPEED #rayon à touché = distance parcourue
+         
+            
         projected_height = int(RES_Y / dist)
         half_projected_height = projected_height // 2
         start_y = HALF_HEIGHT - half_projected_height
