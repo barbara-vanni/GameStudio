@@ -1,0 +1,27 @@
+body { 
+    background: url(assets/labyrinth.webp) no-repeat center center fixed; 
+    background-size: cover;
+  }
+
+header {
+    background-color: rgb(60, 9, 150);
+    margin: 40px;
+    border-radius: 10px;
+    min-width: 70%;
+}
+
+h1 {
+    text-align: center;
+    color: aqua;
+    font-size: 60px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.image {
+    display: flex;
+    justify-content: space-around;
+}
+
+.submit {
+    text-align: center;
+}
