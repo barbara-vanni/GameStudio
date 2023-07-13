@@ -45,9 +45,9 @@ else :
             params = cells.split(":")
             type = int(params[0])
             params.pop(0)
-            new_table.append(Cell.create(type)(params))
+            new_table.append(Cell.create(type)(params))   
         map.append(new_table)
-
+           
 while 1 :
     for event in pg.event.get():
         if event.type == pg.QUIT or (event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE):

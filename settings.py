@@ -48,10 +48,4 @@ colors = [
 #SPRITES
 
 
-sprite_pos = pg.Vector2(8,11)
-
-GOBELIN = pg.image.load('Gobelin.jpg')
-
-sprites = [
-    GOBELIN
-]
+ 
