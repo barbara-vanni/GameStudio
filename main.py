@@ -21,14 +21,13 @@ pg.event.set_grab(True)    #Pour que la souris ne sorte pas de l'écran
 # Sortie et fin de jeu
 clock = pg.time.Clock()
 
-player = Player(8,11)
-# floor = Floor()
+player = Player(1.5, 1.5)
 
 
 
 args = sys.argv
 if len(args) < 2 :
-    map_file = "game_map"
+    map_file = "game_map2"
 else :
     map_file = args[1]
 
