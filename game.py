@@ -6,13 +6,19 @@ from cell import *
 
 class Game:
     def __init__(self):
-        self.wall_texture = pg.image.load('image/mur.jpg')
-        self.floor_texture = pg.image.load('image/sol.png.webp')
-        self.sky_texture = pg.image.load('image/ciel.png')
+        self.size_text = 512
+        self.wall_texture = pg.image.load('image/mur.jpg').convert()
+        self.floor_texture = pg.image.load('image/sol.png.webp').convert()
+        self.sky_texture = pg.image.load('image/ciel.png').convert()
+        self.wall_texture = pg.transform.scale(self.wall_texture, (self.size_text, self.size_text))
+        self.sky_texture = pg.transform.scale(self.sky_texture, (RES_X, HALF_HEIGHT))
 
     def raycasting(self, window, map, player): 
         angle_init = player.angle - HALF_FOV
         start_x = 0
+        
+        window.blit(self.sky_texture, (start_x, 0))
+
         for ray in range(NUM_RAYS):
             vector_init = pg.math.Vector2(int(player.position.x), int(player.position.y))  # vector_init = player_pos #px et py point de départ du rayon 
             sin_a = np.sin(angle_init)      #direction du rayon
@@ -53,9 +59,13 @@ class Game:
                 if cell.type == Cell_type.WALL :
                     hit = True
             if side == 0 :
-                      dist = dx - delta_x
+                if player.position.x < vector_init.x :
+                       side = 2
+                dist = dx - delta_x
             else:
-                      dist = dy - delta_y
+                if player.position.y < vector_init.y:
+                       side = 3
+                dist = dy - delta_y
             
             projected_height = int( RES_Y / dist)
             half_projected_height = projected_height // 2
@@ -63,18 +73,27 @@ class Game:
             start_x += SCALE
 
             # Ajouter la texture du mur
-            # wall_column = self.wall_texture.subsurface((0, 0, 1, self.wall_texture.get_height()))
-            # wall_column = pg.transform.scale(wall_column, (SCALE, projected_height))
-            # window.blit(wall_column, (start_x, start_y))
             
-            # # Ajouter la texture du ciel
-            # sky_column = pg.transform.scale(self.sky_texture, (SCALE, HALF_HEIGHT))
-            # window.blit(sky_column, (start_x, 0))
+            # différenciation des différents cotés du mur
+            
+            if side == 0 or side == 2:
+                  texture_x = player.position.y + dist * vector_dir.y
+            else :
+                  texture_x = player.position.x + dist * vector_dir.x
+            
+            # Récupérer la portion décimale de la position du rayon
+            
+            dec_text_x = texture_x - int(texture_x)
+
+            wall_column = self.wall_texture.subsurface((int(dec_text_x * self.size_text), 0, 1, self.size_text))
+            wall_column = pg.transform.scale(wall_column, (SCALE, projected_height))
+            window.blit(wall_column, (start_x, start_y))
+            
 
             # # Ajouter la texture du sol
             # floor_column = pg.transform.scale(self.floor_texture, (SCALE, HALF_HEIGHT))
             # window.blit(floor_column, (start_x, HALF_HEIGHT))
             
-            pg.draw.rect(window, cell.color, (start_x, start_y, SCALE, projected_height))
+            # pg.draw.rect(window, cell.color, (start_x, start_y, SCALE, projected_height))
             
             angle_init += DELTA_ANGLE
