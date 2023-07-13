@@ -22,8 +22,8 @@ class Game:
             vector_dir = (pg.math.Vector2(sin_a, cos_a))
             hit = False 
 
-            delta_x = 10000 if vector_dir.x == 0 else 1/vector_dir.x
-            delta_y = 10000 if vector_dir.y == 0 else 1/vector_dir.y
+            delta_x = 10000 if vector_dir.x == 0 else abs(1 / vector_dir.x)
+            delta_y = 10000 if vector_dir.y == 0 else abs(1 / vector_dir.y)
             
             if vector_dir.x < 0 :
                     dx = (player.position.x - vector_init.x) * delta_x
