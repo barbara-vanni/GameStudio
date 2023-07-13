@@ -1,0 +1,63 @@
+body { 
+    background: url(assets/labyrinth.webp) no-repeat center center fixed; 
+    background-size: cover;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+
+header {
+    background: url(assets/fire.gif) no-repeat center center fixed;
+    background-size: cover;
+    margin: 40px;
+    border-radius: 10px;
+    min-width: 70%;
+}
+
+h1 {
+    text-align: center;
+    color: aqua;
+    font-size: 60px;
+}
+
+.image {
+    display: flex;
+    justify-content: space-around;
+}
+.button {
+    display: flex;
+    justify-content: space-around;
+}
+
+a {
+    margin: 20px;
+    min-width: 70%;
+    color: white;
+    font-size: 60px;
+    min-height: 100px;
+    background: url(assets/fire.gif) no-repeat center;
+    background-size: cover;
+    border-radius: 15px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+}
+
+p {
+    display: none;
+    margin: 0;
+    width: 284px;
+    height: 177px;
+    background-color: gray;
+    text-align: center;
+    font-size: 20px;
+    line-height: 177px;
+}
+
+.contractuel:hover p {
+    display: block;
+}
+.contractuel:hover img {
+    display: none;
+}
+
+
+
+
