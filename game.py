@@ -12,12 +12,16 @@ class Game:
         self.wall_texture.append (pg.image.load('image/mur.jpg').convert())
         self.wall_texture.append (pg.image.load('image/murs.jpg').convert())
         self.wall_texture.append (pg.image.load('image/murw.jpg').convert())
+        self.wall_texture.append (pg.image.load('image/fin.jpg').convert())
+        self.wall_texture.append (pg.image.load('image/start.jpg').convert())
         self.floor_texture = pg.image.load('image/sol.png.webp').convert()
         self.sky_texture = pg.image.load('image/ciel.png').convert()
         self.wall_texture [0] = pg.transform.scale(self.wall_texture[0], (self.size_text, self.size_text))
         self.wall_texture [1] = pg.transform.scale(self.wall_texture[1], (self.size_text, self.size_text))
         self.wall_texture [2] = pg.transform.scale(self.wall_texture[2], (self.size_text, self.size_text))
         self.wall_texture [3] = pg.transform.scale(self.wall_texture[3], (self.size_text, self.size_text))
+        self.wall_texture [4] = pg.transform.scale(self.wall_texture[4], (self.size_text, self.size_text))
+        self.wall_texture [5] = pg.transform.scale(self.wall_texture[5], (self.size_text, self.size_text))
         self.sky_texture = pg.transform.scale(self.sky_texture, (RES_X, HALF_HEIGHT))
 
     def raycasting(self, window, map, player): 
