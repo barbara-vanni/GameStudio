@@ -3,6 +3,7 @@ import sys
 from player import *
 from raycasting import *
 from cell import *
+from game import *
 
 
 
@@ -11,7 +12,7 @@ MAP_SIZE = 20
 TILE_SIZE = int((RES_X / 2) / MAP_SIZE)
 
 window = pg.display.set_mode((size))
-
+game = Game()
 
 # map = [
 #     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
@@ -102,7 +103,7 @@ while 1 :
 
     frame_time = clock.tick()
     player.movement(frame_time, map)
-    raycasting(window, map, player)      
+    game.raycasting(window, map, player)      
     pg.display.flip()
     # pg.display.update()
     pg.display.set_caption("GAME STUDIO FPS : " + str(int(clock.get_fps())))
