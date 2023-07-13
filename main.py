@@ -42,6 +42,8 @@ else :
         new_table = []
         lineCells = line.strip().split(" ")
         for cells in lineCells:
+            if cells == '':
+                continue
             params = cells.split(":")
             type = int(params[0])
             params.pop(0)
