@@ -20,8 +20,13 @@ class Wall(Cell) :
     def __init__(self, params) : 
         super().__init__(params)
         self.color = colors[0]
+        side_table = [0,0,0,0]   
         if len(params) > 0 :
-            self.color = colors[int(params[0])]   
+        #     self.color = colors[int(params[0])]
+          side = params [0].split(".")
+          for i in range(len(side)):
+              side_table[i]=int(side[i])
+
 
 class Floor(Cell) :
     type = Cell_type.FLOOR
@@ -30,5 +35,4 @@ class Floor(Cell) :
         self.color = colors[0]
         if len(params) > 0 :
             self.color = colors[int(params[0])]  
-
 
