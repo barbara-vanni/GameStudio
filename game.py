@@ -7,10 +7,17 @@ from cell import *
 class Game:
     def __init__(self):
         self.size_text = 512
-        self.wall_texture = pg.image.load('image/mur.jpg').convert()
+        self.wall_texture = []
+        self.wall_texture.append (pg.image.load('image/wall.jpg').convert())
+        self.wall_texture.append (pg.image.load('image/mur.jpg').convert())
+        self.wall_texture.append (pg.image.load('image/murs.jpg').convert())
+        self.wall_texture.append (pg.image.load('image/murw.jpg').convert())
         self.floor_texture = pg.image.load('image/sol.png.webp').convert()
         self.sky_texture = pg.image.load('image/ciel.png').convert()
-        self.wall_texture = pg.transform.scale(self.wall_texture, (self.size_text, self.size_text))
+        self.wall_texture [0] = pg.transform.scale(self.wall_texture[0], (self.size_text, self.size_text))
+        self.wall_texture [1] = pg.transform.scale(self.wall_texture[1], (self.size_text, self.size_text))
+        self.wall_texture [2] = pg.transform.scale(self.wall_texture[2], (self.size_text, self.size_text))
+        self.wall_texture [3] = pg.transform.scale(self.wall_texture[3], (self.size_text, self.size_text))
         self.sky_texture = pg.transform.scale(self.sky_texture, (RES_X, HALF_HEIGHT))
 
     def raycasting(self, window, map, player): 
@@ -85,7 +92,7 @@ class Game:
             
             dec_text_x = texture_x - int(texture_x)
 
-            wall_column = self.wall_texture.subsurface((int(dec_text_x * self.size_text), 0, 1, self.size_text))
+            wall_column = self.wall_texture[0].subsurface((int(dec_text_x * self.size_text), 0, 1, self.size_text))
             wall_column = pg.transform.scale(wall_column, (SCALE, projected_height))
             window.blit(wall_column, (start_x, start_y))
             
