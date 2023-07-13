@@ -27,9 +27,16 @@ class Floor(Cell) :
     type = Cell_type.FLOOR
     def __init__(self, params) : 
         super().__init__(params)
-        pg.sprite.Sprite.__init__(self)
-        self.sprite = pg.Surface([500, 500])
-        self.sprite = GOBELIN
-        # self.rect = self.sprite.get_rect(sprite_pos)
+        self.color = colors[0]
+        if len(params) > 0 :
+            self.color = colors[int(params[0])]  
 
+
+class Sprites(Cell) :
+    type = Cell_type.FLOOR
+    def __init__(self, params):
+        super().__init__(params)
+        # pg.sprite.Sprite.__init__(self)
+        # self.sprite = pg.Surface([500, 500])
+        # # self.rect = self.sprite.get_rect(sprite_pos)
 
