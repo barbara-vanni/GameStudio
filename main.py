@@ -46,16 +46,26 @@ else :
             params = cells.split(":")
             type = int(params[0])
             params.pop(0)
+<<<<<<< Updated upstream
             new_table.append(Cell.create(type)(params))   
         map.append(new_table)
            
+=======
+            new_table.append(Cell.create(type)(params))
+        else:
+            map.append(new_table)
+
+>>>>>>> Stashed changes
 while 1 :
+    # if int(Player.position.x) == exit_x and int(Player.position.y) == exit_y:
+    #         print("Félicitations! Vous avez réussi à sortir du Laybinthe")
+    #         running = False
     for event in pg.event.get():
         if event.type == pg.QUIT or (event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE):
             pg.quit()
             sys.exit()
     
-    window.fill((0,0,0))
+    window.fill((56, 62, 66))
 
     frame_time = clock.tick()
     player.movement(frame_time, map)

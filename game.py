@@ -9,6 +9,7 @@ class Game:
         self.size_text = 512
         self.wall_texture = []
         self.wall_texture.append (pg.image.load('image/wall.jpg').convert())
+<<<<<<< Updated upstream
         self.wall_texture.append (pg.image.load('image/mur.jpg').convert())
         self.wall_texture.append (pg.image.load('image/murs.jpg').convert())
         self.wall_texture.append (pg.image.load('image/murw.jpg').convert())
@@ -26,14 +27,31 @@ class Game:
         self.wall_texture [5] = pg.transform.scale(self.wall_texture[5], (self.size_text, self.size_text))
         self.wall_texture [6] = pg.transform.scale(self.wall_texture[6], (self.size_text, self.size_text))
         self.wall_texture [7] = pg.transform.scale(self.wall_texture[7], (self.size_text, self.size_text))
+=======
+        self.wall_texture.append (pg.image.load('image/murs.jpg').convert())
+        self.wall_texture.append (pg.image.load('image/mur.jpg').convert())
+        self.wall_texture.append (pg.image.load('image/murw.jpg').convert())         
+       
+        self.sky_texture = pg.image.load('image/ciel.png').convert()
+        # self.floor_texture = pg.image.load('image/sol.png.webp').convert()
+        self.wall_texture[0] = pg.transform.scale(self.wall_texture[0], (self.size_text, self.size_text))
+        self.wall_texture[1] = pg.transform.scale(self.wall_texture[1], (self.size_text, self.size_text))
+        self.wall_texture[2] = pg.transform.scale(self.wall_texture[2], (self.size_text, self.size_text))
+        self.wall_texture[3] = pg.transform.scale(self.wall_texture[3], (self.size_text, self.size_text))
+>>>>>>> Stashed changes
         self.sky_texture = pg.transform.scale(self.sky_texture, (RES_X, HALF_HEIGHT))
+        # self.floor_texture = pg.transform.scale(self.floor_texture, (RES_X, HALF_HEIGHT))
+        
+    
+    # self.floor_texture = pg.surfarray.array3d(self.floor_texture)/255
 
     def raycasting(self, window, map, player): 
         angle_init = player.angle - HALF_FOV
         start_x = 0
         
         window.blit(self.sky_texture, (start_x, 0))
-
+        # window.blit(self.floor_texture, (start_x, 0))
+       
         for ray in range(NUM_RAYS):
             vector_init = pg.math.Vector2(int(player.position.x), int(player.position.y))  # vector_init = player_pos #px et py point de départ du rayon 
             sin_a = np.sin(angle_init)      #direction du rayon
@@ -86,9 +104,9 @@ class Game:
             projected_height = int( RES_Y / dist)
             half_projected_height = projected_height // 2
             start_y = HALF_HEIGHT - half_projected_height
-            start_x += SCALE
-
-            # Ajouter la texture du mur
+            start_x += SCALE     
+            
+        # Ajouter la texture du mur
             
             # différenciation des différents cotés du mur
             
@@ -101,15 +119,12 @@ class Game:
             
             dec_text_x = texture_x - int(texture_x)
 
+<<<<<<< Updated upstream
             wall_column = self.wall_texture[cell.side_table[side]].subsurface((int(dec_text_x * self.size_text), 0, 1, self.size_text))
+=======
+            wall_column = self.wall_texture[0].subsurface((int(dec_text_x * self.size_text), 0, 1, self.size_text))
+>>>>>>> Stashed changes
             wall_column = pg.transform.scale(wall_column, (SCALE, projected_height))
             window.blit(wall_column, (start_x, start_y))
-            
-
-            # # Ajouter la texture du sol
-            # floor_column = pg.transform.scale(self.floor_texture, (SCALE, HALF_HEIGHT))
-            # window.blit(floor_column, (start_x, HALF_HEIGHT))
-            
-            # pg.draw.rect(window, cell.color, (start_x, start_y, SCALE, projected_height))
             
             angle_init += DELTA_ANGLE
