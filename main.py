@@ -1,7 +1,7 @@
 import pygame as pg
 import sys
 from player import *
-from raycasting2 import *
+from raycasting import *
 
 
 size = RES_X, RES_Y
