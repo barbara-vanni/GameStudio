@@ -1,7 +1,7 @@
 import pygame as pg
 import numpy as np
 from settings import *
-from player import *
+from playertest import *
 from cell import *
 
 class Game:
