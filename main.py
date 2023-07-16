@@ -46,16 +46,10 @@ else :
             params = cells.split(":")
             type = int(params[0])
             params.pop(0)
-<<<<<<< Updated upstream
-            new_table.append(Cell.create(type)(params))   
-        map.append(new_table)
-           
-=======
             new_table.append(Cell.create(type)(params))
         else:
             map.append(new_table)
 
->>>>>>> Stashed changes
 while 1 :
     # if int(Player.position.x) == exit_x and int(Player.position.y) == exit_y:
     #         print("Félicitations! Vous avez réussi à sortir du Laybinthe")
