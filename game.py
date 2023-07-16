@@ -9,25 +9,6 @@ class Game:
         self.size_text = 512
         self.wall_texture = []
         self.wall_texture.append (pg.image.load('image/wall.jpg').convert())
-<<<<<<< Updated upstream
-        self.wall_texture.append (pg.image.load('image/mur.jpg').convert())
-        self.wall_texture.append (pg.image.load('image/murs.jpg').convert())
-        self.wall_texture.append (pg.image.load('image/murw.jpg').convert())
-        self.wall_texture.append (pg.image.load('image/fin.jpg').convert())
-        self.wall_texture.append (pg.image.load('image/start.jpg').convert())
-        self.wall_texture.append (pg.image.load('image/monstre1.jpg').convert())
-        self.wall_texture.append (pg.image.load('image/monstre2.jpg').convert())
-        self.floor_texture = pg.image.load('image/sol.png.webp').convert()
-        self.sky_texture = pg.image.load('image/ciel.png').convert()
-        self.wall_texture [0] = pg.transform.scale(self.wall_texture[0], (self.size_text, self.size_text))
-        self.wall_texture [1] = pg.transform.scale(self.wall_texture[1], (self.size_text, self.size_text))
-        self.wall_texture [2] = pg.transform.scale(self.wall_texture[2], (self.size_text, self.size_text))
-        self.wall_texture [3] = pg.transform.scale(self.wall_texture[3], (self.size_text, self.size_text))
-        self.wall_texture [4] = pg.transform.scale(self.wall_texture[4], (self.size_text, self.size_text))
-        self.wall_texture [5] = pg.transform.scale(self.wall_texture[5], (self.size_text, self.size_text))
-        self.wall_texture [6] = pg.transform.scale(self.wall_texture[6], (self.size_text, self.size_text))
-        self.wall_texture [7] = pg.transform.scale(self.wall_texture[7], (self.size_text, self.size_text))
-=======
         self.wall_texture.append (pg.image.load('image/murs.jpg').convert())
         self.wall_texture.append (pg.image.load('image/mur.jpg').convert())
         self.wall_texture.append (pg.image.load('image/murw.jpg').convert())         
@@ -38,7 +19,6 @@ class Game:
         self.wall_texture[1] = pg.transform.scale(self.wall_texture[1], (self.size_text, self.size_text))
         self.wall_texture[2] = pg.transform.scale(self.wall_texture[2], (self.size_text, self.size_text))
         self.wall_texture[3] = pg.transform.scale(self.wall_texture[3], (self.size_text, self.size_text))
->>>>>>> Stashed changes
         self.sky_texture = pg.transform.scale(self.sky_texture, (RES_X, HALF_HEIGHT))
         # self.floor_texture = pg.transform.scale(self.floor_texture, (RES_X, HALF_HEIGHT))
         
@@ -119,11 +99,7 @@ class Game:
             
             dec_text_x = texture_x - int(texture_x)
 
-<<<<<<< Updated upstream
-            wall_column = self.wall_texture[cell.side_table[side]].subsurface((int(dec_text_x * self.size_text), 0, 1, self.size_text))
-=======
             wall_column = self.wall_texture[0].subsurface((int(dec_text_x * self.size_text), 0, 1, self.size_text))
->>>>>>> Stashed changes
             wall_column = pg.transform.scale(wall_column, (SCALE, projected_height))
             window.blit(wall_column, (start_x, start_y))
             
