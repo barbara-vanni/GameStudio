@@ -1,6 +1,6 @@
 import pygame as pg
 import sys
-from playertest import *
+from playerlast import *
 from cell import *
 from game import *
 

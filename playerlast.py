@@ -12,6 +12,7 @@ class Player :
         self.update_cos_sin()
         self.vector_dir = self.update_dir ()
         self.perpendicular_dir = self.update_perpendicular_dir()
+        self.player_radius = 0.1
         
 
     def movement (self, frame_time, map) :   #CONFIG POUR WASD, pour azerty : 
@@ -45,16 +46,16 @@ class Player :
     def update_perpendicular_dir(self):
         return pg.Vector2(- self.cos_a, self.sin_a)
     
-    def verify_distance(self,map):
+    def verify_distance(self, new_position, direction, map):
         hit = False
         distance_x = 0
         distance_y = 0
         hit_x = False
         hit_y = False
         step = 0.1
-        step_x = self.vector_dir.x * step
-        step_y = self.vector_dir.y * step
-        projected_ray = self.position.copy()
+        step_x = direction.x * step
+        step_y = direction.y * step
+        projected_ray = new_position.copy()
         
         while not hit :
             projected_ray.x += step_x
@@ -69,43 +70,50 @@ class Player :
             cell = map[int(projected_ray.y)][int(projected_ray.x)]
             if cell.type == Cell_type.WALL :
                 hit_y = True
+                distance_y -= step
             if hit_x or hit_y :
                 hit = True
+                distance_x -= step
         return distance_x, distance_y
     
-    def verify_wall (self, new_position, map) :
-        if map[int(new_position.y)][int(new_position.x)].type == Cell_type.FLOOR:
-            self.position = new_position
 
     def move_forward (self, frame_time, map) :
-        #new_position = self.position + self.speed * self.vector_dir * frame_time
+        new_position = self.position + self.speed * self.vector_dir * frame_time
         # if map[int(new_position.y + self.collision_radius + self.vector_dir.y * self.speed)][int(new_position.x + self.collision_radius)].type == 0 and map[int(self.position.y - self.collision_radius + self.vector_dir.y * self.speed)][int(self.position.x - self.collision_radius)].type == 0:
         #self.verify_wall (new_position, map)
-        dx, dy = self.verify_distance(map)
-        if dx > 1:
-            self.position.x = self.position.x + self.vector_dir.x * frame_time * self.speed
-        else:
-            self.position.x = 8
-        if dy > 1:
-            self.position.y = self.position.y + self.vector_dir.y * frame_time * self.speed
-        else:
-            self.position.y = 8
+        dx, dy = self.verify_distance(new_position,self.vector_dir,map)
+        if dx > self.player_radius:
+            self.position.x = new_position.x
+        if dy > self.player_radius:
+            self.position.y = new_position.y
+
 
 
     def move_back (self, frame_time, map) :
         new_position = self.position - self.speed * self.vector_dir * frame_time
-        self.verify_wall (new_position, map)
+        dx, dy = self.verify_distance(new_position, -self.vector_dir, map)
+        if dx > self.player_radius:
+            self.position.x = new_position.x
+        if dy > self.player_radius:
+            self.position.y = new_position.y
     
     #Pour move left et right on calcule le vector dir +- 90° donc ça perpendiculaire positive et négative
-    def move_left(self, frame_time, map):    
-        # perpendicular_dir = pg.Vector2(-self.vector_dir.y, self.vector_dir.x)
+    def move_left(self, frame_time, map):
         new_position = self.position + self.perpendicular_dir * self.speed * frame_time
-        self.verify_wall(new_position, map)
+        dx, dy = self.verify_distance(new_position,self.perpendicular_dir, map)
+        if dx > self.player_radius:
+            self.position.x = new_position.x
+        if dy > self.player_radius:
+            self.position.y = new_position.y
 
     def move_right(self, frame_time, map):
         # perpendicular_dir = pg.Vector2(self.vector_dir.y, -self.vector_dir.x)
         new_position = self.position - self.perpendicular_dir * self.speed * frame_time
-        self.verify_wall(new_position, map)
+        dx, dy = self.verify_distance(new_position, -self.perpendicular_dir, map)
+        if dx > self.player_radius:
+            self.position.x = new_position.x
+        if dy > self.player_radius:
+            self.position.y = new_position.y
 
     def rotate_left (self, rotation) :
         self.angle -= rotation
