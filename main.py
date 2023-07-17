@@ -21,13 +21,13 @@ pg.event.set_grab(True)    #Pour que la souris ne sorte pas de l'écran
 # Sortie et fin de jeu
 clock = pg.time.Clock()
 
-player = Player(8,11)
+player = Player(1.5, 1.5)
 
 
 
 args = sys.argv
 if len(args) < 2 :
-    map_file = "game_map"
+    map_file = "game_map2"
 else :
     map_file = args[1]
 
@@ -41,12 +41,14 @@ else :
         new_table = []
         lineCells = line.strip().split(" ")
         for cells in lineCells:
+            if cells == '':
+                continue
             params = cells.split(":")
             type = int(params[0])
             params.pop(0)
-            new_table.append(Cell.create(type)(params))
+            new_table.append(Cell.create(type)(params))   
         map.append(new_table)
-
+           
 while 1 :
     for event in pg.event.get():
         if event.type == pg.QUIT or (event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE):

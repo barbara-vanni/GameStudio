@@ -7,10 +7,25 @@ from cell import *
 class Game:
     def __init__(self):
         self.size_text = 512
-        self.wall_texture = pg.image.load('image/mur.jpg').convert()
+        self.wall_texture = []
+        self.wall_texture.append (pg.image.load('image/wall.jpg').convert())
+        self.wall_texture.append (pg.image.load('image/mur.jpg').convert())
+        self.wall_texture.append (pg.image.load('image/murs.jpg').convert())
+        self.wall_texture.append (pg.image.load('image/murw.jpg').convert())
+        self.wall_texture.append (pg.image.load('image/fin.jpg').convert())
+        self.wall_texture.append (pg.image.load('image/start.jpg').convert())
+        self.wall_texture.append (pg.image.load('image/monstre1.jpg').convert())
+        self.wall_texture.append (pg.image.load('image/monstre2.jpg').convert())
         self.floor_texture = pg.image.load('image/sol.png.webp').convert()
         self.sky_texture = pg.image.load('image/ciel.png').convert()
-        self.wall_texture = pg.transform.scale(self.wall_texture, (self.size_text, self.size_text))
+        self.wall_texture [0] = pg.transform.scale(self.wall_texture[0], (self.size_text, self.size_text))
+        self.wall_texture [1] = pg.transform.scale(self.wall_texture[1], (self.size_text, self.size_text))
+        self.wall_texture [2] = pg.transform.scale(self.wall_texture[2], (self.size_text, self.size_text))
+        self.wall_texture [3] = pg.transform.scale(self.wall_texture[3], (self.size_text, self.size_text))
+        self.wall_texture [4] = pg.transform.scale(self.wall_texture[4], (self.size_text, self.size_text))
+        self.wall_texture [5] = pg.transform.scale(self.wall_texture[5], (self.size_text, self.size_text))
+        self.wall_texture [6] = pg.transform.scale(self.wall_texture[6], (self.size_text, self.size_text))
+        self.wall_texture [7] = pg.transform.scale(self.wall_texture[7], (self.size_text, self.size_text))
         self.sky_texture = pg.transform.scale(self.sky_texture, (RES_X, HALF_HEIGHT))
 
     def raycasting(self, window, map, player): 
@@ -59,14 +74,15 @@ class Game:
                 if cell.type == Cell_type.WALL :
                     hit = True
             if side == 0 :
-                if player.position.x < vector_init.x :
+                if player.position.x > vector_init.x :
                        side = 2
                 dist = dx - delta_x
             else:
-                if player.position.y < vector_init.y:
+                if player.position.y > vector_init.y:
                        side = 3
                 dist = dy - delta_y
-            
+           
+            # Position 0 = EST, 1 = NORD, 2 = OUEST 3 = SUD
             projected_height = int( RES_Y / dist)
             half_projected_height = projected_height // 2
             start_y = HALF_HEIGHT - half_projected_height
@@ -85,7 +101,7 @@ class Game:
             
             dec_text_x = texture_x - int(texture_x)
 
-            wall_column = self.wall_texture.subsurface((int(dec_text_x * self.size_text), 0, 1, self.size_text))
+            wall_column = self.wall_texture[cell.side_table[side]].subsurface((int(dec_text_x * self.size_text), 0, 1, self.size_text))
             wall_column = pg.transform.scale(wall_column, (SCALE, projected_height))
             window.blit(wall_column, (start_x, start_y))
             
