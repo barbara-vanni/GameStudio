@@ -28,6 +28,8 @@ class Player :
             self.move_left(frame_time,map)
         if KEYS[ord('d')]: 
             self.move_right(frame_time,map)
+        if KEYS[pg.K_LSHIFT]:
+            self.sprint(frame_time, map)
         
         if KEYS[pg.K_LEFT] or mouse[0] < 0 : 
             self.rotate_left (rotation)
@@ -76,6 +78,14 @@ class Player :
                 distance_x -= step
         return distance_x, distance_y
     
+
+    def sprint(self, frame_time, map):
+        new_position = self.position + self.speed * self.vector_dir * frame_time * 2
+        dx, dy = self.verify_distance(new_position,self.vector_dir,map)
+        if dx > self.player_radius:
+            self.position.x = new_position.x
+        if dy > self.player_radius:
+            self.position.y = new_position.y
 
     def move_forward (self, frame_time, map) :
         new_position = self.position + self.speed * self.vector_dir * frame_time
